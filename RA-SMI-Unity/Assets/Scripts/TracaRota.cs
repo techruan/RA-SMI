@@ -7,13 +7,12 @@ using UnityEngine.AI;
 public class TracaRota : MonoBehaviour
 {
 	private LineRenderer tracaLinha;
-    public NavMeshAgent agenteNavegacaoFlecha;
     private Vector3[] pontos;
     private NavMeshPath caminho;
-    private Vector3 localCamera;
+    private Vector3 localcameraRA;
 	public Transform goal;
     private bool tracandoRota;
-    public Transform camera;
+    public Transform cameraRA;
     public float linhaDistanciaDoChao;
     
     
@@ -33,14 +32,13 @@ public class TracaRota : MonoBehaviour
         // NavMeshPath caminho = new NavMeshPath();
         // 
         
-        localCamera = camera.position;
-        localCamera.y = linhaDistanciaDoChao;
+        localcameraRA = cameraRA.position;
+        localcameraRA.y = linhaDistanciaDoChao;
         if(Input.GetMouseButtonUp(0)){
             tracandoRota = !tracandoRota;
-            agenteNavegacaoFlecha.destination = goal.position;
         }
         if(tracandoRota){
-            NavMesh.CalculatePath(localCamera, goal.position, NavMesh.AllAreas, caminho);
+            NavMesh.CalculatePath(localcameraRA, goal.position, NavMesh.AllAreas, caminho);
             AtualizaRota();
         }else{
             tracaLinha.positionCount = 0;
