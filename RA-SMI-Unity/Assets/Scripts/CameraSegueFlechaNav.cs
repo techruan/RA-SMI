@@ -4,12 +4,16 @@ public class CameraSegueFlechaNav : MonoBehaviour
 {
     public Transform flechaNav;
     public Vector3 offset;
-
+    void Start(){
+        transform.position += offset;
+    }
     // Update is called once per frame
-    void FixedUpdate()
+    void LateUpdate()
     {
-        this.transform.position = flechaNav.position + offset;
-        this.transform.LookAt(flechaNav);
+        //transform.position = flechaNav.position + offset;
+        Vector3 posicaoFlecha = new Vector3(flechaNav.position.x, transform.position.y, flechaNav.position.z);
+        transform.LookAt(posicaoFlecha);
+
         
     }
 }
